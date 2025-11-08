@@ -299,7 +299,7 @@ section.is-exiting {
   @apply flex justify-between items-center mb-3;
 }
 .maintenance-status-header h4 {
-  @apply text-md font-semibold text-gray-700;
+  @apply text-base font-semibold text-gray-700;
 }
 .maintenance-status-header .maintenance-year-select {
   @apply text-sm font-medium border-gray-300 rounded-lg shadow-sm;
