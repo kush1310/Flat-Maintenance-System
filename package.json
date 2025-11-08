@@ -1,11 +1,11 @@
 {
-  "name": "flat-maintenance-system",
+  "name": "shreeji-complex-backend",
   "version": "1.0.0",
-  "description": "Flat Maintenance Management System - Tailwind CSS + Node.js + Express + Nodemailer",
+  "description": "Flat Maintenance System backend (with Tailwind build and Brevo email support)",
   "main": "server.js",
   "scripts": {
-    "build:css": "npx tailwindcss -i ./src/style.css -o ./public/output.css --minify",
-    "watch:css": "npx tailwindcss -i ./src/style.css -o ./public/output.css --watch",
+    "build:css": "tailwindcss -i ./style.css -o ./public/output.css --minify",
+    "watch:css": "tailwindcss -i ./style.css -o ./public/output.css --watch",
     "start": "node server.js",
     "dev": "concurrently \"npm:watch:css\" \"nodemon server.js\"",
     "build": "npm install && npm run build:css"
@@ -25,13 +25,13 @@
     "tailwindcss": "^3.4.4"
   },
   "keywords": [
-    "tailwindcss",
-    "nodejs",
     "express",
+    "tailwindcss",
+    "render-deployment",
     "nodemailer",
-    "flat-maintenance",
-    "render-deployment"
+    "brevo",
+    "flat-maintenance-system"
   ],
   "author": "Kush Amit Shah",
-  "license": "ISC"
+  "license": "MIT"
 }
