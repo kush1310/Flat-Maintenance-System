@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finance | Shreeji Complex</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/public/output.css">
+
+  <script type="module" src="https://unpkg.com/lucide-react@latest/dist/umd/lucide.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<body class="bg-gray-100">
+
+  <!-- Admin Login Section - ** NEW TWO-COLUMN DESIGN ** -->
+  <div id="login-container" class="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+    <div class="relative flex w-full max-w-4xl overflow-hidden rounded-2xl shadow-2xl border border-gray-200" style="min-height: 550px;">
+      
+      <!-- Left "Hero" Column -->
+      <div class="hidden md:flex flex-col justify-between w-1/2 p-10 text-white bg-gradient-to-br from-indigo-600 to-purple-600">
+        <div class="flex items-center space-x-3">
+            <div class="p-2 bg-white/20 rounded-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-landmark"><line x1="12" x2="12" y1="22" y2="18"/><path d="M12 2L.5 12.5l3 3L12 9l8.5 6.5 3-3L12 2"/><path d="M22 18h-2a2 2 0 0 0-2 2v2H6v-2a2 2 0 0 0-2-2H2"/><path d="M6 18V9.5"/><path d="M18 18V9.5"/><path d="M12 12.5V9"/></svg>
+            </div>
+            <span class="text-xl font-bold">Shreeji Complex</span>
+        </div>
+        <div>
+          <h2 class="text-4xl font-bold mb-4">Admin Portal</h2>
+          <p class="text-lg text-indigo-100">Manage all society finances, maintenance, and reports in one secure location.</p>
+        </div>
+        <div class="text-sm text-indigo-200">
+          © 2025 Shreeji Complex. All rights reserved.
+          Developer: Kush Shah | Contact: +91 9426557314
+        </div>
+      </div>
+      
+      <!-- Right "Form" Column -->
+      <div class="w-full md:w-1/2 p-8 sm:p-12 bg-white flex flex-col justify-center">
+        <form id="login-form" class="login-form-animate space-y-4">
+          <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Admin Login</h2>
+          
+          <div class="form-group">
+            <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+            <input type="text" id="username" placeholder="Username" required
+              class="mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200" />
+          </div>
+
+          <div class="form-group">
+            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+            <input type="password" id="password" placeholder="Password" required
+              class="mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200" />
+          </div>
+          
+          <!-- CAPTCHA Section -->
+          <div class="form-group">
+            <label class="block text-sm font-medium text-gray-700">CAPTCHA</label>
+            <div class="flex flex-wrap sm:flex-nowrap items-center gap-2 mt-1">
+                <canvas id="captcha-canvas" width="120" height="40" class="rounded-lg flex-shrink-0"></canvas>
+                
+                <button type="button" id="reload-captcha-btn" class="flex-shrink-0 p-2 h-10 w-10 flex items-center justify-center text-gray-800 hover:text-indigo-600 focus:outline-none rounded-lg hover:bg-gray-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                      <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+                    </svg>
+                </button>
+                
+                <input type="text" id="captcha-input" placeholder="CAPTCHA" required
+                  class="flex-grow w-full sm:w-auto h-10 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200" />
+            </div>
+          </div>
+          
+          <button type="submit"
+            class="w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-transform transform hover:-translate-y-0.5 duration-200 shadow-lg hover:shadow-xl">
+            Login
+          </button>
+          <p id="login-error" class="text-red-600 font-medium text-sm text-center h-5"></p>
+          
+          <div class="text-center pt-2">
+              <button type="button" id="forgot-password-btn" class="text-sm font-medium text-indigo-600 hover:text-indigo-500 hover:underline">
+                Forgot Password?
+              </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Dashboard (Hidden by default) -->
+  <div id="dashboard-container" class="relative" style="display: none">
+
+    <!-- Hamburger Menu Button -->
+    <button id="hamburger-btn" class="hamburger-btn fixed top-4 left-4 z-50 bg-white p-3 rounded-md shadow-md border border-gray-200">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+    </button>
+    
+    <!-- Sidebar Overlay (for mobile) -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden" ></div>
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="w-72 bg-white shadow-lg flex flex-col border-r border-gray-200 fixed inset-y-0 left-0 z-50 transform -translate-x-full">
+      <!-- Sidebar Header -->
+      <div class="px-6 py-5 border-b border-gray-200 flex items-center space-x-3">
+        <div class="p-2 bg-indigo-100 rounded-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-landmark"><line x1="12" x2="12" y1="22" y2="18"/><path d="M12 2L.5 12.5l3 3L12 9l8.5 6.5 3-3L12 2"/><path d="M22 18h-2a2 2 0 0 0-2 2v2H6v-2a2 2 0 0 0-2-2H2"/><path d="M6 18V9.5"/><path d="M18 18V9.5"/><path d="M12 12.5V9"/></svg>
+        </div>
+        <div>
+            <h1 class="text-2xl font-bold text-indigo-600">Shreeji Complex</h1>
+            <p class="text-sm text-gray-500">Developer: Kush Shah</p>
+            <p class="text-sm text-gray-500">Contact: +91 9426557314</p>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="main-nav flex-1 space-y-2 p-4">
+        <button id="logout-button-mobile"
+          class="w-full flex lg:hidden items-center justify-center space-x-2 bg-gradient-to-r from-red-500 to-pink-500 text-white font-bold py-3 px-4 rounded-lg hover:from-red-600 hover:to-pink-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-transform transform hover:-translate-y-0.5 duration-200 shadow-lg hover:shadow-xl">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+          <span>Logout</span>
+        </button>
+
+        <button id="dashboard-nav-btn"
+          class="w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-600 font-medium hover:bg-gray-100 hover:text-indigo-600 transition duration-200">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-grid"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 12h18"/><path d="M12 3v18"/></svg>
+          <span>Maintenance Portal</span>
+        </button>
+        <button id="history-nav-btn"
+          class="w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-600 font-medium hover:bg-gray-100 hover:text-indigo-600 transition duration-200 text-left">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-history"><path d="M3 12A9 9 0 1 0 12 3v1h10"/><path d="M3 21 1.6 19.6"/><path d="m21 12-1.4 1.4"/><path d="M12 8v4l2 2"/></svg>
+          <span>Maintenance History</span>
+        </button>
+        <button id="finance-nav-btn"
+          class="w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-600 font-medium hover:bg-gray-100 hover:text-indigo-600 transition duration-200">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wallet"><path d="M19 7V4a1 1 0 0 0-1-1H6a2 2 0 0 0-2 2v3H3a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1h-2Z"/><path d="M3 10h18"/><path d="M15 14v-2a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v2"/></svg>
+          <span>Full Budget Portal</span>
+        </button>
+        <button id="settings-nav-btn"
+          class="w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-600 font-medium hover:bg-gray-100 hover:text-indigo-600 transition duration-200">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.1a2 2 0 0 1-1-1.72v-.51a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+          <span>Settings</span>
+        </button>
+      </nav>
+
+      <!-- Notifications Section -->
+      <div class="p-4 border-t border-gray-200 h-64 flex flex-col">
+        <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Recent Updates</h3>
+        <div id="notifications-list" class="flex-1 space-y-3 overflow-y-auto custom-scrollbar">
+          <div class="bg-gray-100 p-3 rounded-lg">
+            <p class="text-sm text-gray-700 font-medium">No new notifications</p>
+            <p class="text-xs text-gray-500">All systems are operational.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Logout Button (Desktop) -->
+      <div class="p-4 border-t border-gray-200">
+        <button id="logout-button-desktop"
+          class="w-full hidden lg:flex items-center justify-center space-x-2 bg-gradient-to-r from-red-500 to-pink-500 text-white font-bold py-3 px-4 rounded-lg hover:from-red-600 hover:to-pink-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-transform transform hover:-translate-y-0.5 duration-200 shadow-lg hover:shadow-xl">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+          <span>Logout</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main id="main-content" class="flex-1 bg-gray-100 min-h-screen transition-all duration-300 pt-20 px-4 pb-4 sm:px-6 lg:px-8">
+
+      <!-- Section: Maintenance Portal -->
+      <section id="dashboard-section" class="active-section relative">
+        <div id="floor-navigation" class="flex flex-wrap justify-center gap-4 mb-8">
+          <!-- Floor buttons will be injected here by script.js -->
+        </div>
+        <button id="back-to-all-flats-btn" style="display: none;"
+          class="mb-6 bg-gray-600 text-white font-bold py-2 px-5 rounded-lg hover:bg-gray-700 transition duration-200 shadow-md flex items-center mx-auto">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-circle"><circle cx="12" cy="12" r="10"/><path d="M16 12H8"/><path d="m12 8-4 4 4 4"/></svg>
+          <span class="ml-2">Back to Floors</span>
+        </button>
+        <div id="flat-list" class="flat-card-grid">
+          <!-- Flat cards will be injected here -->
+        </div>
+      </section>
+
+      <!-- Section: Maintenance History -->
+      <section id="history-section" style="display: none" class="relative">
+        <div class="bg-white rounded-2xl shadow-xl border border-gray-200 p-4 sm:p-6">
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-6">Transaction History For Maintenance</h2>
+          
+          <div class="search-bar flex flex-wrap gap-4 mb-6 pb-6 border-b border-gray-200">
+            <div class="relative flex-grow w-full md:w-auto">
+                <input type="text" id="flat-search-input" placeholder="Search by Flat Number (e.g., 101)"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200" autocomplete="off" />
+                <div id="search-results-dropdown" class="absolute top-full left-0 w-full bg-white border border-gray-300 rounded-b-lg shadow-lg z-10 hidden max-h-60 overflow-y-auto">
+                </div>
+            </div>
+            <button id="search-button"
+              class="w-full md:w-auto bg-indigo-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-indigo-700 transition duration-200 shadow-md">Search</button>
+            <button id="show-all-button"
+              class="w-full md:w-auto bg-gray-500 text-white font-semibold py-3 px-6 rounded-lg hover:bg-gray-600 transition duration-200 shadow-md">Show All</button>
+            <button id="generate-pdf-button" disabled
+              class="w-full md:w-auto bg-red-500 text-white font-semibold py-3 px-6 rounded-lg hover:bg-red-600 transition duration-200 shadow-md flex items-center justify-center space-x-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-warning"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+              <span>PDF (Pending)</span>
+            </button>
+            <button id="generate-searched-flat-pdf-button" style="display: none;"
+              class="w-full md:w-auto bg-green-500 text-white font-semibold py-3 px-6 rounded-lg hover:bg-green-600 transition duration-200 shadow-md flex items-center justify-center space-x-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+              <span>PDF (Searched Flat)</span>
+            </button>
+          </div>
+
+          <div id="payment-history-table-container" class="overflow-x-auto">
+            <p class="no-results text-center text-gray-500 italic p-10" style="display: block">
+              No Payments To Display.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Full Budget Portal -->
+      <section id="finance-section" style="display: none" class="relative space-y-6">
+        <div class="bg-white rounded-2xl shadow-xl border border-gray-200 p-4 sm:p-6 md:p-8">
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-6">Shreeji Complex | Budget</h2>
+          
+          <div class="budget-summary bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-6 sm:p-8 rounded-2xl shadow-lg mb-8">
+            <h3 class="text-xl sm:text-2xl font-semibold mb-2">Total Funds Available</h3>
+            <span id="total-funds" class="text-4xl sm:text-5xl font-extrabold">₹ 0.00</span>
+          </div>
+
+          <div class="budget-actions grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <!-- Add Amount Card -->
+            <div class="action-card-finance">
+              <h4 class="text-2xl font-bold text-green-600 mb-4">Add Amount</h4>
+              <div class="space-y-4">
+                <div class="form-group">
+                    <label for="add-fund-amount" class="block text-sm font-medium text-gray-700">Amount (₹)</label>
+                    <input type="number" id="add-fund-amount" placeholder="Amount (₹)" min="0"
+                      class="form-input mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"/>
+                </div>
+                <div class="form-group">
+                    <label for="add-fund-date" class="block text-sm font-medium text-gray-700">Date</label>
+                    <input type="date" id="add-fund-date"
+                      class="form-input mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-700"/>
+                </div>
+                <div class="form-group">
+                    <label for="add-fund-reason" class="block text-sm font-medium text-gray-700">Reason</label>
+                    <textarea id="add-fund-reason" placeholder="Reason for addition"
+                      class="form-textarea mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg h-28 focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
+                </div>
+                <button id="add-fund-btn"
+                  class="w-full bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition-transform transform hover:-translate-y-0.5 duration-200 shadow-lg">Add Amount</button>
+              </div>
+            </div>
+
+            <!-- Deduct Amount Card -->
+            <div class="action-card-finance">
+              <h4 class="text-2xl font-bold text-red-600 mb-4">Deduct Amount</h4>
+              <div class="space-y-4">
+                <div class="form-group">
+                    <label for="deduct-fund-amount" class="block text-sm font-medium text-gray-700">Amount (₹)</label>
+                    <input type="number" id="deduct-fund-amount" placeholder="Amount (₹)" min="0"
+                      class="form-input mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"/>
+                </div>
+                <div class="form-group">
+                    <label for="deduct-fund-date" class="block text-sm font-medium text-gray-700">Date</label>
+                    <input type="date" id="deduct-fund-date"
+                      class="form-input mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-700"/>
+                </div>
+                <div class="form-group">
+                    <label for="deduct-fund-reason" class="block text-sm font-medium text-gray-700">Reason</label>
+                    <textarea id="deduct-fund-reason" placeholder="Reason for deduction"
+                      class="form-textarea mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg h-28 focus:outline-none focus:ring-2 focus:ring-red-500"></textarea>
+                </div>
+                <button id="deduct-fund-btn"
+                  class="w-full bg-red-500 text-white font-bold py-3 rounded-lg hover:bg-red-600 transition-transform transform hover:-translate-y-0.5 duration-200 shadow-lg">Deduct Amount</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Budget History -->
+          <div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Full Transaction History</h3>
+            
+            <div class="search-bar flex flex-wrap gap-4 mb-6 pb-6 border-b border-gray-200">
+              
+              <div class="flex flex-wrap md:flex-nowrap gap-4 w-full md:w-auto">
+                <select id="pl-report-year-select" class="form-select w-full md:w-auto px-4 py-3 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <!-- Options will be added by JS -->
+                </select>
+                <button id="overall-profit-loss-pdf-btn" disabled
+                  class="w-full md:w-auto bg-purple-500 text-white font-semibold py-3 px-6 rounded-lg hover:bg-purple-600 transition duration-200 shadow-md flex items-center justify-center space-x-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pie-chart"><path d="M21.21 15.89A10 10 0 1 1 8.11 2.79"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+                  <span>P/L Report</span>
+                </button>
+              </div>
+              
+              <div class="flex flex-wrap md:flex-nowrap gap-4 w-full md:w-auto">
+                <select id="txn-history-year-select" class="form-select w-full md:w-auto px-4 py-3 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <!-- Options will be added by JS -->
+                </select>
+                <button id="generate-budget-pdf-button" disabled
+                  class="w-full md:w-auto bg-blue-500 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-600 transition duration-200 shadow-md flex items-center justify-center space-x-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                  <span>TXN History</span>
+                </button>
+              </div>
+              
+              <div class="flex flex-wrap md:flex-nowrap gap-4 w-full md:w-auto">
+                <select id="financial-year-select" class="form-select w-full md:w-auto px-4 py-3 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <!-- Options will be added by JS -->
+                </select>
+                <button id="generate-annual-statement-pdf-btn" disabled
+                  class="w-full md:w-auto bg-teal-500 text-white font-semibold py-3 px-6 rounded-lg hover:bg-teal-600 transition duration-200 shadow-md flex items-center justify-center space-x-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-check"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="m9 16 2 2 4-4"/></svg>
+                  <span>Annual Statement</span>
+                </button>
+              </div>
+            </div>
+
+            <div id="budget-history-table-container" class="overflow-x-auto">
+              <p class="no-results text-center text-gray-500 italic p-10" style="display: block">
+                No Transactions To Display.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="settings-section" style="display: none" class="relative">
+        <div class="bg-white rounded-2xl shadow-xl border border-gray-200 p-6 md:p-8 max-w-2xl mx-auto">
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-6">Application Settings</h2>
+          
+          <div class="space-y-4">
+              <label for="maintenance-amount-input" class="block text-sm font-medium text-gray-700">Default Maintenance Amount (₹)</label>
+              <input type="number" id="maintenance-amount-input" placeholder="e.g., 500" min="0"
+                class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"/>
+              <p class="text-xs text-gray-500">This is the default amount that will be pre-filled on all flat maintenance cards.</p>
+              <button id="save-settings-btn"
+                class="w-full bg-indigo-600 text-white font-bold py-3 rounded-lg hover:bg-indigo-700 transition-transform transform hover:-translate-y-0.5 duration-200 shadow-lg">
+                Save Settings
+              </button>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+  
+  <!-- Login OTP Modal -->
+  <div id="login-otp-modal" class="modal-container fixed inset-0 bg-gray-900 bg-opacity-60 flex items-center justify-center z-50 p-4 hidden">
+    <div class="modal-content bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md text-center">
+        <h3 class="text-2xl font-bold text-gray-800 mb-4">Two-Factor Authentication</h3>
+        <p class="text-gray-600 mb-6">An OTP has been sent to <strong>kushshah900@gmail.com</strong>. Please check and enter the code below.</p>
+        <input type="text" id="login-otp-input" placeholder="Enter 6-digit OTP" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+        <p id="login-otp-error" class="text-red-500 text-sm text-left h-5 mt-2"></p>
+        <div class="flex gap-4 mt-6">
+            <button id="login-otp-cancel-btn" class="w-full bg-gray-200 text-gray-700 font-bold py-3 rounded-lg hover:bg-gray-300 transition duration-200">Cancel</button>
+            <button id="login-otp-verify-btn" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-lg hover:bg-indigo-700 transition duration-200">Verify & Login</button>
+        </div>
+    </div>
+  </div>
+  
+  <!-- Forgot Password Modal -->
+  <div id="forgot-password-modal" class="modal-container fixed inset-0 bg-gray-900 bg-opacity-60 flex items-center justify-center z-50 p-4 hidden">
+    <div class="modal-content bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md text-center">
+        
+        <!-- Step 1: Email Input -->
+        <div id="forgot-step-1-email" class="modal-step">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Forgot Password</h3>
+            <p class="text-gray-600 mb-6">Enter your admin email address to receive a verification code.</p>
+            <input type="email" id="forgot-email-input" placeholder="Admin Email" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+            <p id="forgot-email-error" class="text-red-500 text-sm text-left h-5 mt-2"></p>
+            <div class="flex gap-4 mt-6">
+                <button id="forgot-cancel-btn" class="w-full bg-gray-200 text-gray-700 font-bold py-3 rounded-lg hover:bg-gray-300 transition duration-200">Cancel</button>
+                <button id="forgot-email-next-btn" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-lg hover:bg-indigo-700 transition duration-200">Next</button>
+            </div>
+        </div>
+
+        <!-- Step 2: OTP Input -->
+        <div id="forgot-step-2-otp" class="modal-step hidden">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Verify OTP</h3>
+            <p class="text-gray-600 mb-6">An OTP has been sent to <strong>kushshah900@gmail.com</strong>. Please check your email.</p>
+            <input type="text" id="forgot-otp-input" placeholder="Enter 6-digit OTP" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+            <p id="forgot-otp-error" class="text-red-500 text-sm text-left h-5 mt-2"></p>
+            <div class="flex gap-4 mt-6">
+                <button id="forgot-cancel-btn-2" class="w-full bg-gray-200 text-gray-700 font-bold py-3 rounded-lg hover:bg-gray-300 transition duration-200">Cancel</button>
+                <button id="forgot-otp-verify-btn" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-lg hover:bg-indigo-700 transition duration-200">Verify</button>
+            </div>
+        </div>
+
+        <!-- Step 3: Success -->
+        <div id="forgot-step-3-success" class="modal-step hidden">
+            <h3 class="text-2xl font-bold text-green-600 mb-4">Success!</h3>
+            <p class="text-gray-600 mb-6">Your password has been sent to: <br><strong>kushshah900@gmail.com</strong><br><br>Your password is: <strong>pass</strong></p>
+            <button id="forgot-success-close-btn" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-lg hover:bg-indigo-700 transition duration-200">Close</button>
+        </div>
+
+    </div>
+  </div>
+  
+  <div id="settings-otp-modal" class="modal-container fixed inset-0 bg-gray-900 bg-opacity-60 flex items-center justify-center z-50 p-4 hidden">
+    <div class="modal-content bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md text-center">
+        <h3 class="text-2xl font-bold text-gray-800 mb-4">Verify Change</h3>
+        <p class="text-gray-600 mb-6">To save this change, please enter the OTP sent to <strong>kushshah900@gmail.com</strong>.</p>
+        <input type="text" id="settings-otp-input" placeholder="Enter 6-digit OTP" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+        <p id="settings-otp-error" class="text-red-500 text-sm text-left h-5 mt-2"></p>
+        <div class="flex gap-4 mt-6">
+            <button id="settings-otp-cancel-btn" class="w-full bg-gray-200 text-gray-700 font-bold py-3 rounded-lg hover:bg-gray-300 transition duration-200">Cancel</button>
+            <button id="settings-otp-verify-btn" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-lg hover:bg-indigo-700 transition duration-200">Verify & Save</button>
+        </div>
+    </div>
+  </div>
+
+
+  <!-- JS Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+  <!-- Your Script File -->
+  <script src="script.js"></script>
+</body>
+
+</html>
