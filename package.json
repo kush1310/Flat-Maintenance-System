@@ -1,11 +1,11 @@
 {
   "name": "flat-maintenance-system",
   "version": "1.0.0",
-  "description": "Flat Maintenance Management - Tailwind + Node + Express + Nodemailer",
+  "description": "Flat Maintenance Management System - Tailwind CSS + Node.js + Express + Nodemailer",
   "main": "server.js",
   "scripts": {
-    "build:css": "npx tailwindcss -i ./style.css -o ./public/output.css --minify",
-    "watch:css": "npx tailwindcss -i ./style.css -o ./public/output.css --watch",
+    "build:css": "npx tailwindcss -i ./src/style.css -o ./public/output.css --minify",
+    "watch:css": "npx tailwindcss -i ./src/style.css -o ./public/output.css --watch",
     "start": "node server.js",
     "dev": "concurrently \"npm:watch:css\" \"nodemon server.js\"",
     "build": "npm install && npm run build:css"
@@ -23,5 +23,15 @@
     "nodemon": "^3.1.4",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.4"
-  }
+  },
+  "keywords": [
+    "tailwindcss",
+    "nodejs",
+    "express",
+    "nodemailer",
+    "flat-maintenance",
+    "render-deployment"
+  ],
+  "author": "Kush Amit Shah",
+  "license": "ISC"
 }
