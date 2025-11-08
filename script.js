@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   // --- Constants & State ---
-  const BACKEND_URL = "http://localhost:3000"; 
+  const BACKEND_URL = window.location.origin; 
   const ADMIN_USERNAME = "admin";
   const ADMIN_PASSWORD = "pass"; 
   const ADMIN_EMAIL = "kush.work1310@gmail.com";

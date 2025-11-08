@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-// --- Brevo SMTP Transporter ---
+// ✅ Brevo SMTP Transporter (only this part changed)
 const transporter = nodemailer.createTransport({
   host: "smtp-relay.brevo.com",
   port: 587,
@@ -28,23 +28,20 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
-  logger: true,  // Helps you debug delivery issues in Render logs
-  debug: true,
+  tls: { rejectUnauthorized: false },
 });
 
-// --- OTP Stores ---
+// --- In-Memory OTP Storage ---
 let loginOtpStore = "";
 let forgotOtpStore = "";
 let settingsOtpStore = "";
 
-// --- Helper Function: Generate OTP ---
+// --- Helper Functions ---
 const generateOTP = () => Math.floor(100000 + Math.random() * 900000).toString();
 
-// --- Generic Email Sender ---
-const sendEmail = async (otp, subject, toEmail = "kush.work1310@gmail.com") => {
+const sendEmail = async (otp, subject, toEmail = process.env.SENDER_EMAIL) => {
   const mailOptions = {
-    from: `"Shreeji Complex Admin via Brevo" <${process.env.SENDER_EMAIL}>`,
-    replyTo: process.env.SENDER_EMAIL, // ✅ Makes Gmail sender more trustworthy
+    from: `"Shreeji Complex Admin" <${process.env.SENDER_EMAIL}>`,
     to: toEmail,
     subject,
     html: `
@@ -62,7 +59,7 @@ const sendEmail = async (otp, subject, toEmail = "kush.work1310@gmail.com") => {
 
   try {
     await transporter.sendMail(mailOptions);
-    console.log(`✅ OTP sent successfully to ${toEmail}`);
+    console.log(`✅ OTP email sent successfully to ${toEmail}`);
     return true;
   } catch (error) {
     console.error("❌ Error sending OTP email:", error);
@@ -70,7 +67,6 @@ const sendEmail = async (otp, subject, toEmail = "kush.work1310@gmail.com") => {
   }
 };
 
-// --- Send Receipt Email ---
 const sendReceiptEmail = async (receiptData) => {
   const { flatNumber, emails, date, months, year, amount, mode, remarks } = receiptData;
 
@@ -79,6 +75,7 @@ const sendReceiptEmail = async (receiptData) => {
       <h2 style="color: #4f46e5;">Payment Received - Flat ${flatNumber}</h2>
       <p>Dear Resident,</p>
       <p>We have successfully received a maintenance payment for your flat. Here are the details:</p>
+      
       <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
         <tr><td>Payment Date:</td><td style="text-align:right;">${date}</td></tr>
         <tr><td>Amount Paid:</td><td style="text-align:right; color:#28a745; font-weight:bold;">₹${amount.toFixed(2)}</td></tr>
@@ -86,13 +83,17 @@ const sendReceiptEmail = async (receiptData) => {
         <tr><td>Payment Mode:</td><td style="text-align:right;">${mode}</td></tr>
         ${remarks ? `<tr><td>Remarks:</td><td style="text-align:right;">${remarks}</td></tr>` : ""}
       </table>
-      <p style="margin-top:20px; font-size:12px; color:#888;">This is an automated receipt.<br>Thank you for your payment.<br>Shreeji Complex Management</p>
+      
+      <p style="margin-top: 25px; font-size: 12px; color: #888;">
+        This is an automated receipt. Thank you for your payment.
+        <br>
+        Shreeji Complex Management
+      </p>
     </div>
   `;
 
   const mailOptions = {
-    from: `"Shreeji Complex Admin via Brevo" <${process.env.SENDER_EMAIL}>`,
-    replyTo: process.env.SENDER_EMAIL,
+    from: `"Shreeji Complex Admin" <${process.env.SENDER_EMAIL}>`,
     to: emails.join(","),
     subject: `Maintenance Payment Received - Flat ${flatNumber}`,
     html: htmlReceipt,
@@ -108,18 +109,19 @@ const sendReceiptEmail = async (receiptData) => {
   }
 };
 
-// --- OTP & Verification Routes ---
+// --- API Endpoints (identical to your version) ---
+
 app.post("/send-login-otp", async (req, res) => {
   loginOtpStore = generateOTP();
   const sent = await sendEmail(loginOtpStore, "Login Verification OTP");
   sent
-    ? res.json({ success: true, message: "OTP sent successfully." })
-    : res.status(500).json({ success: false, message: "Failed to send OTP." });
+    ? res.json({ success: true, message: "OTP sent to admin email." })
+    : res.status(500).json({ success: false, message: "Failed to send OTP email." });
 });
 
 app.post("/verify-login-otp", (req, res) => {
   const { otp } = req.body;
-  if (otp === loginOtpStore && otp) {
+  if (otp === loginOtpStore && loginOtpStore !== "") {
     loginOtpStore = "";
     res.json({ success: true, message: "Login successful." });
   } else {
@@ -131,13 +133,13 @@ app.post("/send-forgot-otp", async (req, res) => {
   forgotOtpStore = generateOTP();
   const sent = await sendEmail(forgotOtpStore, "Password Reset OTP");
   sent
-    ? res.json({ success: true, message: "OTP sent successfully." })
-    : res.status(500).json({ success: false, message: "Failed to send OTP." });
+    ? res.json({ success: true, message: "OTP sent to admin email." })
+    : res.status(500).json({ success: false, message: "Failed to send OTP email." });
 });
 
 app.post("/verify-forgot-otp", (req, res) => {
   const { otp } = req.body;
-  if (otp === forgotOtpStore && otp) {
+  if (otp === forgotOtpStore && forgotOtpStore !== "") {
     forgotOtpStore = "";
     res.json({ success: true, message: "Verification successful." });
   } else {
@@ -149,13 +151,13 @@ app.post("/send-settings-otp", async (req, res) => {
   settingsOtpStore = generateOTP();
   const sent = await sendEmail(settingsOtpStore, "Settings Change Verification OTP");
   sent
-    ? res.json({ success: true, message: "OTP sent successfully." })
-    : res.status(500).json({ success: false, message: "Failed to send OTP." });
+    ? res.json({ success: true, message: "OTP sent to admin email." })
+    : res.status(500).json({ success: false, message: "Failed to send OTP email." });
 });
 
 app.post("/verify-settings-otp", (req, res) => {
   const { otp } = req.body;
-  if (otp === settingsOtpStore && otp) {
+  if (otp === settingsOtpStore && settingsOtpStore !== "") {
     settingsOtpStore = "";
     res.json({ success: true, message: "Verification successful." });
   } else {
@@ -166,14 +168,14 @@ app.post("/verify-settings-otp", (req, res) => {
 app.post("/send-receipt", async (req, res) => {
   const sent = await sendReceiptEmail(req.body);
   sent
-    ? res.json({ success: true, message: "Receipt sent successfully." })
-    : res.status(500).json({ success: false, message: "Failed to send receipt." });
+    ? res.json({ success: true, message: "Receipts sent successfully." })
+    : res.status(500).json({ success: false, message: "Failed to send receipts." });
 });
 
 // --- Start Server ---
 app.listen(port, () => {
   console.log(`🚀 Server running on http://localhost:${port}`);
   if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-    console.warn("⚠️ EMAIL_USER or EMAIL_PASS missing in environment variables!");
+    console.warn("⚠️ EMAIL_USER or EMAIL_PASS not set in environment variables!");
   }
 });
