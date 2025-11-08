@@ -149,7 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const FLAT_EMAIL_MAP = {
-    "101": ["s22cp38@gmail.com", "d25ce145@gmail.com", "try.gpt1310@gmail.com"],
+    "101": ["s22cp38@gmail.com"],
     "102": ["owner102@example.com"],
     "103": ["owner103-a@example.com", "owner103-b@example.com"],
     "104": ["owner104@example.com"],
@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "204": ["owner204@example.com"],
     "301": ["owner301@example.com"],
     "302": ["owner302@example.com"],
-    "303": ["owner303@example.com"],
+    "303": ["kushshah900@gmail.com"],
     "304": ["owner304@example.com"],
     "401": ["owner401@example.com"],
     "402": ["owner402@example.com"],
