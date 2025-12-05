@@ -101,6 +101,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const forgotOtpVerifyBtn = document.getElementById("forgot-otp-verify-btn");
   const forgotSuccessCloseBtn = document.getElementById("forgot-success-close-btn");
 
+  // Desktop navigation buttons
+  const desktopDashboardNav = document.getElementById('desktop-dashboard-nav');
+  const desktopHistoryNav = document.getElementById('desktop-history-nav');
+  const desktopFinanceNav = document.getElementById('desktop-finance-nav');
+  const desktopSettingsNav = document.getElementById('desktop-settings-nav');
+  
+  if (desktopDashboardNav) desktopDashboardNav.addEventListener('click', () => navigateToSection(dashboardNavBtn, dashboardSection));
+  if (desktopHistoryNav) desktopHistoryNav.addEventListener('click', () => navigateToSection(historyNavBtn, historySection));
+  if (desktopFinanceNav) desktopFinanceNav.addEventListener('click', () => navigateToSection(financeNavBtn, financeSection));
+  if (desktopSettingsNav) desktopSettingsNav.addEventListener('click', () => navigateToSection(settingsNavBtn, settingsSection));
+
   // --- 3D Login Card Tilt Effect ---
   const loginCardWrapper = document.querySelector(".login-card-wrapper");
   const loginCard = document.querySelector(".login-card");
