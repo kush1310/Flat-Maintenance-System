@@ -87,31 +87,23 @@
                 Forgot Password?
               </button>
           </div>
+          
+          <!-- Demo Credentials Info -->
+          <div class="demo-credentials-box">
+            <p class="demo-title">Demo Credentials</p>
+            <p class="demo-text"><strong>Username:</strong> demo_userflat1</p>
+            <p class="demo-text"><strong>Password:</strong> pass_demouser1</p>
+            <p class="demo-note">Demo mode skips OTP verification</p>
+          </div>
         </form>
       </div>
     </div>
   </div>
 
   <!-- Main Dashboard (Hidden by default) -->
-  <div id="dashboard-container" class="relative" style="display: none">
+  <div id="dashboard-container" class="relative min-h-screen" style="display: none">
 
-    <!-- Desktop Glassmorphism Navigation (lg and above) -->
-    <nav class="desktop-nav">
-      <button id="desktop-dashboard-nav" class="desktop-nav-card active">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 12h18"/><path d="M12 3v18"/></svg>
-        <span>Maintenance Portal</span>
-      </button>
-      <button id="desktop-history-nav" class="desktop-nav-card">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12A9 9 0 1 0 12 3v1h10"/><path d="M3 21 1.6 19.6"/><path d="m21 12-1.4 1.4"/><path d="M12 8v4l2 2"/></svg>
-        <span>History</span>
-      </button>
-      <button id="desktop-finance-nav" class="desktop-nav-card">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7V4a1 1 0 0 0-1-1H6a2 2 0 0 0-2 2v3H3a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1h-2Z"/><path d="M3 10h18"/><path d="M15 14v-2a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v2"/></svg>
-        <span>Budget</span>
-      </button>
-    </nav>
-
-    <!-- Desktop Top Right - Settings & Logout -->
+    <!-- Desktop Top Right - Settings & Logout (Always visible on desktop) -->
     <div class="desktop-top-right">
       <button id="desktop-settings-nav" class="top-right-btn settings-btn" title="Settings">
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.1a2 2 0 0 1-1-1.72v-.51a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
@@ -120,6 +112,66 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
       </button>
     </div>
+    
+    <!-- Back to Home Button for Desktop -->
+    <button id="back-home-btn" class="back-home-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+      Back to Home
+    </button>
+
+    <!-- Desktop Home Page Cards (lg and above) - Visible only when on home/dashboard -->
+    <div id="desktop-home-cards" class="desktop-home-container">
+      <h1 class="desktop-home-title">Shreeji Complex Admin</h1>
+      <p class="desktop-home-subtitle">Select a portal to manage your society</p>
+      
+      <div class="desktop-cards-grid">
+        <!-- Maintenance Portal Card -->
+        <div class="home-nav-card" id="home-card-dashboard">
+          <div class="home-card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 12h18"/><path d="M12 3v18"/></svg>
+          </div>
+          <h3 class="home-card-title">Maintenance Portal</h3>
+          <p class="home-card-desc">Manage flat maintenance payments, track dues, and update records</p>
+        </div>
+        
+        <!-- History Card -->
+        <div class="home-nav-card" id="home-card-history">
+          <div class="home-card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12A9 9 0 1 0 12 3v1h10"/><path d="M3 21 1.6 19.6"/><path d="m21 12-1.4 1.4"/><path d="M12 8v4l2 2"/></svg>
+          </div>
+          <h3 class="home-card-title">Maintenance History</h3>
+          <p class="home-card-desc">View complete transaction history and generate PDF reports</p>
+        </div>
+        
+        <!-- Budget Card -->
+        <div class="home-nav-card" id="home-card-finance">
+          <div class="home-card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7V4a1 1 0 0 0-1-1H6a2 2 0 0 0-2 2v3H3a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1h-2Z"/><path d="M3 10h18"/><path d="M15 14v-2a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v2"/></svg>
+          </div>
+          <h3 class="home-card-title">Budget Portal</h3>
+          <p class="home-card-desc">Track society funds, add/deduct amounts, and view financial reports</p>
+        </div>
+      </div>
+      
+      <!-- Recent Notifications Section for Desktop -->
+      <div class="desktop-notifications-section">
+        <h3 class="desktop-notifications-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+          Recent Notifications
+        </h3>
+        <div id="desktop-notifications-list" class="desktop-notifications-list">
+          <!-- Notifications will be injected by JS -->
+        </div>
+      </div>
+    </div>
+    
+    <!-- Footer for Desktop Home -->
+    <footer class="desktop-footer">
+      <div class="footer-content">
+        <p class="footer-text">Developed by <strong>Kush Shah</strong> | Contact: +91 9426557314</p>
+        <p class="footer-copyright">2025 Shreeji Complex. All rights reserved.</p>
+      </div>
+    </footer>
 
     <!-- Hamburger Menu Button (Mobile/Tablet only) -->
     <button id="hamburger-btn" class="hamburger-btn fixed top-4 left-4 z-50 p-3 rounded-xl">
@@ -200,22 +252,26 @@
     <main id="main-content" class="flex-1 bg-white min-h-screen transition-all duration-300 pt-20 px-4 pb-4 sm:px-6 lg:px-8">
 
       <!-- Section: Maintenance Portal -->
-      <section id="dashboard-section" class="active-section relative">
+      <section id="dashboard-section" class="active-section relative" style="display: none;">
+        <!-- Back to Floor Button - Centered and Fixed Position -->
+        <div class="back-btn-container">
+          <button id="back-to-all-flats-btn" style="display: none;"
+            class="btn-secondary flex items-center mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-circle"><circle cx="12" cy="12" r="10"/><path d="M16 12H8"/><path d="m12 8-4 4 4 4"/></svg>
+            <span class="ml-2">Back to Floors</span>
+          </button>
+        </div>
+        
         <div id="floor-navigation" class="flex flex-wrap justify-center gap-4 mb-8">
           <!-- Floor buttons will be injected here by script.js -->
         </div>
         
         <!-- Flat Number Buttons Container (Hidden by default, shown after floor selection) -->
-        <div id="flat-number-navigation" class="flex flex-wrap justify-center gap-4 mb-8" style="display: none;">
-          <!-- Flat number buttons will be injected here -->
+        <div id="flat-number-navigation" class="flat-number-nav" style="display: none;">
+          <!-- Flat number buttons will be injected here by script.js -->
         </div>
         
-        <button id="back-to-all-flats-btn" style="display: none;"
-          class="btn-secondary mb-6 flex items-center mx-auto">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-circle"><circle cx="12" cy="12" r="10"/><path d="M16 12H8"/><path d="m12 8-4 4 4 4"/></svg>
-          <span class="ml-2">Back to Floors</span>
-        </button>
-        <div id="flat-list" class="flat-card-grid">
+        <div id="flat-list" class="flat-card-grid flat-card-container">
           <!-- Flat cards will be injected here -->
         </div>
       </section>
@@ -351,16 +407,52 @@
       </section>
 
       <section id="settings-section" style="display: none" class="relative">
-        <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 md:p-8 max-w-2xl mx-auto">
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-4 sm:p-6 md:p-8 max-w-2xl mx-auto settings-container">
           <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-6">Application Settings</h2>
           
-          <div class="space-y-4">
-              <label for="maintenance-amount-input" class="block text-sm font-medium text-gray-700">Default Maintenance Amount (Rs.)</label>
+          <!-- Maintenance Amount Setting -->
+          <div class="settings-card mb-6">
+            <h3 class="settings-card-title">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              Default Maintenance Amount
+            </h3>
+            <div class="space-y-3">
               <input type="number" id="maintenance-amount-input" placeholder="e.g., 500" min="0" class="form-input"/>
               <p class="text-xs text-gray-500">This is the default amount that will be pre-filled on all flat maintenance cards.</p>
               <button id="save-settings-btn" class="btn-primary w-full">
-                Save Settings
+                Save Maintenance Amount
               </button>
+            </div>
+          </div>
+          
+          <!-- Email Update Setting -->
+          <div class="settings-card email-settings-card">
+            <h3 class="settings-card-title">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              Change Owner Email Address
+            </h3>
+            <p class="text-xs text-gray-500 mb-4">Update email addresses for flat owners to receive maintenance receipts.</p>
+            
+            <div class="space-y-4">
+              <!-- Flat Selection Dropdown -->
+              <div class="form-group">
+                <label for="email-flat-select" class="block text-sm font-medium text-gray-700 mb-1">Select Flat Number</label>
+                <div class="relative">
+                  <input type="text" id="email-flat-search" placeholder="Search flat number (e.g., 101)" class="form-input" autocomplete="off" />
+                  <div id="email-flat-dropdown" class="dropdown-menu hidden">
+                    <!-- Flat options will be injected here -->
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Current Emails Display -->
+              <div id="current-emails-container" class="hidden">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Current Email(s) for this flat:</label>
+                <div id="current-emails-list" class="email-list-container">
+                  <!-- Current emails will be shown here -->
+                </div>
+              </div>
+            </div>
           </div>
 
         </div>
@@ -371,12 +463,12 @@
   
   <!-- Login OTP Modal -->
   <div id="login-otp-modal" class="modal-container fixed inset-0 flex items-center justify-center z-50 p-4 hidden">
-    <div class="modal-content p-8 w-full max-w-md text-center">
-        <h3 class="text-2xl font-bold text-gray-800 mb-4">Two-Factor Authentication</h3>
-        <p class="text-gray-600 mb-6">An OTP has been sent to <strong>kush.work1310@gmail.com</strong>. Please check and enter the code below.</p>
+    <div class="modal-content p-6 w-full max-w-sm text-center">
+        <h3 class="text-xl font-bold text-gray-800 mb-3">Two-Factor Authentication</h3>
+        <p class="text-gray-600 text-sm mb-4">An OTP has been sent to <strong>kush.work1310@gmail.com</strong>. Please check and enter the code below.</p>
         <input type="text" id="login-otp-input" placeholder="Enter 6-digit OTP" class="form-input" />
         <p id="login-otp-error" class="text-red-500 text-sm text-left h-5 mt-2"></p>
-        <div class="flex gap-4 mt-6">
+        <div class="flex gap-3 mt-4">
             <button id="login-otp-cancel-btn" class="btn-secondary w-full">Cancel</button>
             <button id="login-otp-verify-btn" class="btn-primary w-full">Verify & Login</button>
         </div>
@@ -385,15 +477,15 @@
   
   <!-- Forgot Password Modal -->
   <div id="forgot-password-modal" class="modal-container fixed inset-0 flex items-center justify-center z-50 p-4 hidden">
-    <div class="modal-content p-8 w-full max-w-md text-center">
+    <div class="modal-content p-6 w-full max-w-sm text-center">
         
         <!-- Step 1: Email Input -->
         <div id="forgot-step-1-email" class="modal-step">
-            <h3 class="text-2xl font-bold text-gray-800 mb-4">Forgot Password</h3>
-            <p class="text-gray-600 mb-6">Enter your admin email address to receive a verification code.</p>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">Forgot Password</h3>
+            <p class="text-gray-600 text-sm mb-4">Enter your admin email address to receive a verification code.</p>
             <input type="email" id="forgot-email-input" placeholder="Admin Email" class="form-input" />
             <p id="forgot-email-error" class="text-red-500 text-sm text-left h-5 mt-2"></p>
-            <div class="flex gap-4 mt-6">
+            <div class="flex gap-3 mt-4">
                 <button id="forgot-cancel-btn" class="btn-secondary w-full">Cancel</button>
                 <button id="forgot-email-next-btn" class="btn-primary w-full">Next</button>
             </div>
@@ -401,11 +493,11 @@
 
         <!-- Step 2: OTP Input -->
         <div id="forgot-step-2-otp" class="modal-step hidden">
-            <h3 class="text-2xl font-bold text-gray-800 mb-4">Verify OTP</h3>
-            <p class="text-gray-600 mb-6">An OTP has been sent to <strong>kush.work1310@gmail.com</strong>. Please check your email.</p>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">Verify OTP</h3>
+            <p class="text-gray-600 text-sm mb-4">An OTP has been sent to <strong>kush.work1310@gmail.com</strong>. Please check your email.</p>
             <input type="text" id="forgot-otp-input" placeholder="Enter 6-digit OTP" class="form-input" />
             <p id="forgot-otp-error" class="text-red-500 text-sm text-left h-5 mt-2"></p>
-            <div class="flex gap-4 mt-6">
+            <div class="flex gap-3 mt-4">
                 <button id="forgot-cancel-btn-2" class="btn-secondary w-full">Cancel</button>
                 <button id="forgot-otp-verify-btn" class="btn-primary w-full">Verify</button>
             </div>
@@ -413,8 +505,8 @@
 
         <!-- Step 3: Success -->
         <div id="forgot-step-3-success" class="modal-step hidden">
-            <h3 class="text-2xl font-bold mb-4" style="color: #10b981;">Success!</h3>
-            <p class="text-gray-600 mb-6">Your password has been sent to: <br><strong>kush.work1310@gmail.com</strong><br><br>Your password is: <strong>pass</strong></p>
+            <h3 class="text-xl font-bold mb-3" style="color: #10b981;">Success!</h3>
+            <p class="text-gray-600 text-sm mb-4">Your password has been sent to: <br><strong>kush.work1310@gmail.com</strong><br><br>Your password is: <strong>pass</strong></p>
             <button id="forgot-success-close-btn" class="btn-primary w-full">Close</button>
         </div>
 
@@ -422,14 +514,43 @@
   </div>
   
   <div id="settings-otp-modal" class="modal-container fixed inset-0 flex items-center justify-center z-50 p-4 hidden">
-    <div class="modal-content p-8 w-full max-w-md text-center">
-        <h3 class="text-2xl font-bold text-gray-800 mb-4">Verify Change</h3>
-        <p class="text-gray-600 mb-6">To save this change, please enter the OTP sent to <strong>kush.work1310@gmail.com</strong>.</p>
+    <div class="modal-content p-6 w-full max-w-sm text-center">
+        <h3 class="text-xl font-bold text-gray-800 mb-3">Verify Change</h3>
+        <p class="text-gray-600 text-sm mb-4">To save this change, please enter the OTP sent to <strong>kush.work1310@gmail.com</strong>.</p>
         <input type="text" id="settings-otp-input" placeholder="Enter 6-digit OTP" class="form-input" />
         <p id="settings-otp-error" class="text-red-500 text-sm text-left h-5 mt-2"></p>
-        <div class="flex gap-4 mt-6">
+        <div class="flex gap-3 mt-4">
             <button id="settings-otp-cancel-btn" class="btn-secondary w-full">Cancel</button>
             <button id="settings-otp-verify-btn" class="btn-primary w-full">Verify & Save</button>
+        </div>
+    </div>
+  </div>
+  
+  <!-- Email Update OTP Modal -->
+  <div id="email-otp-modal" class="modal-container fixed inset-0 flex items-center justify-center z-50 p-4 hidden">
+    <div class="modal-content p-6 w-full max-w-sm text-center">
+        <h3 class="text-xl font-bold text-gray-800 mb-3">Verify Email Change</h3>
+        <p class="text-gray-600 text-sm mb-4">To update the email, please enter the OTP sent to <strong>kush.work1310@gmail.com</strong>.</p>
+        <input type="text" id="email-otp-input" placeholder="Enter 6-digit OTP" class="form-input" />
+        <p id="email-otp-error" class="text-red-500 text-sm text-left h-5 mt-2"></p>
+        <div class="flex gap-3 mt-4">
+            <button id="email-otp-cancel-btn" class="btn-secondary w-full">Cancel</button>
+            <button id="email-otp-verify-btn" class="btn-primary w-full">Verify & Save</button>
+        </div>
+    </div>
+  </div>
+  
+  <!-- Biometric Setup Modal (Mobile Only) -->
+  <div id="biometric-setup-modal" class="modal-container fixed inset-0 flex items-center justify-center z-50 p-4 hidden">
+    <div class="modal-content p-6 w-full max-w-sm text-center">
+        <div class="biometric-icon-container">
+          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="biometric-icon"><path d="M12 10a2 2 0 0 0-2 2c0 1.02.77 2 2 2"/><path d="M12 14c1.1 0 2-.9 2-2a2 2 0 0 0-2-2"/><path d="M16 12a4 4 0 0 0-4-4"/><path d="M12 8a4 4 0 0 0-4 4"/><path d="M16 12a4 4 0 0 1-4 4"/><path d="M12 16a4 4 0 0 1-4-4"/><rect width="20" height="20" x="2" y="2" rx="2"/></svg>
+        </div>
+        <h3 class="text-xl font-bold text-gray-800 mb-3">Enable Biometric Login</h3>
+        <p class="text-gray-600 text-sm mb-4">Would you like to enable fingerprint login for faster access in the future?</p>
+        <div class="flex gap-3 mt-4">
+            <button id="biometric-skip-btn" class="btn-secondary w-full">Skip</button>
+            <button id="biometric-enable-btn" class="btn-primary w-full">Enable</button>
         </div>
     </div>
   </div>
@@ -441,65 +562,6 @@
   <!-- Your Script File -->
   <script src="script.js"></script>
   
-  <!-- Desktop Navigation Script -->
-  <script>
-    // Desktop navigation click handlers
-    document.addEventListener('DOMContentLoaded', function() {
-      const desktopDashboardNav = document.getElementById('desktop-dashboard-nav');
-      const desktopHistoryNav = document.getElementById('desktop-history-nav');
-      const desktopFinanceNav = document.getElementById('desktop-finance-nav');
-      const desktopSettingsNav = document.getElementById('desktop-settings-nav');
-      const desktopLogoutBtn = document.getElementById('desktop-logout-btn');
-      
-      // Map desktop nav buttons to existing sidebar buttons
-      const dashboardNavBtn = document.getElementById('dashboard-nav-btn');
-      const historyNavBtn = document.getElementById('history-nav-btn');
-      const financeNavBtn = document.getElementById('finance-nav-btn');
-      const settingsNavBtn = document.getElementById('settings-nav-btn');
-      const logoutButtonDesktop = document.getElementById('logout-button-desktop');
-      
-      function updateDesktopNavActive(activeBtn) {
-        [desktopDashboardNav, desktopHistoryNav, desktopFinanceNav].forEach(btn => {
-          if (btn) btn.classList.remove('active');
-        });
-        if (activeBtn) activeBtn.classList.add('active');
-      }
-      
-      if (desktopDashboardNav && dashboardNavBtn) {
-        desktopDashboardNav.addEventListener('click', function() {
-          dashboardNavBtn.click();
-          updateDesktopNavActive(desktopDashboardNav);
-        });
-      }
-      
-      if (desktopHistoryNav && historyNavBtn) {
-        desktopHistoryNav.addEventListener('click', function() {
-          historyNavBtn.click();
-          updateDesktopNavActive(desktopHistoryNav);
-        });
-      }
-      
-      if (desktopFinanceNav && financeNavBtn) {
-        desktopFinanceNav.addEventListener('click', function() {
-          financeNavBtn.click();
-          updateDesktopNavActive(desktopFinanceNav);
-        });
-      }
-      
-      if (desktopSettingsNav && settingsNavBtn) {
-        desktopSettingsNav.addEventListener('click', function() {
-          settingsNavBtn.click();
-          updateDesktopNavActive(null);
-        });
-      }
-      
-      if (desktopLogoutBtn && logoutButtonDesktop) {
-        desktopLogoutBtn.addEventListener('click', function() {
-          logoutButtonDesktop.click();
-        });
-      }
-    });
-  </script>
 </body>
 
 </html>
