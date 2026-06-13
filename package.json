@@ -4,11 +4,11 @@
   "description": "Flat Maintenance System backend (with Tailwind build and Brevo email support)",
   "main": "server.js",
   "scripts": {
-    "build:css": "tailwindcss -i ./style.css -o ./public/output.css --minify",
-    "watch:css": "tailwindcss -i ./style.css -o ./public/output.css --watch",
     "start": "node server.js",
-    "dev": "concurrently \"npm:watch:css\" \"nodemon server.js\"",
-    "build": "npm install && npm run build:css"
+    "build": "vite build",
+    "dev:server": "cross-env NODE_OPTIONS=--no-warnings nodemon server.js",
+    "dev:vite": "vite",
+    "dev": "concurrently --raw \"npm:dev:server\" \"npm:dev:vite\""
   },
   "dependencies": {
     "@getbrevo/brevo": "^3.0.1",
@@ -16,7 +16,18 @@
     "dotenv": "^16.6.1",
     "express": "^4.21.2",
     "node-fetch": "^3.3.2",
-    "nodemailer": "^6.9.14"
+    "nodemailer": "^6.9.14",
+    "pg": "^8.12.0",
+    "jsonwebtoken": "^9.0.2",
+    "cookie-parser": "^1.4.6",
+    "bcryptjs": "^2.4.3",
+    "express-rate-limit": "^7.3.1",
+    "helmet": "^7.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "lucide-react": "^0.395.0",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.8.2"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.7",
@@ -24,7 +35,10 @@
     "concurrently": "^8.2.2",
     "nodemon": "^3.1.4",
     "postcss": "^8.4.38",
-    "tailwindcss": "^3.4.4"
+    "tailwindcss": "^3.4.4",
+    "vite": "^5.2.11",
+    "@vitejs/plugin-react": "^4.3.0",
+    "cross-env": "^7.0.3"
   },
   "keywords": [
     "express",
